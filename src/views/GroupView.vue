@@ -1,9 +1,8 @@
 <template>
-    <div v-if="groupsStore.listLoading">Loading</div>
-    <div v-else>
+    <div>
         <header>
             <h1>
-                <NameHeadline :names="groupsStore.getNamesByFormat(group.id)" />
+                <NameHeadline :names="groupsStore.getNamesByFormat(group?.id)" />
             </h1>
             <h5>
                 <router-link :to="{ name: LIST_TYPE_GROUPS }">{{ t("views.GroupView.tofulllistlink") }}</router-link>
@@ -14,21 +13,21 @@
 
             <div class="left-grid">
                 <div class="poster">
-                    <img class :src="group.avatarUrl" :alt="groupsStore.getFormattedName(group.id)"
-                        :title="groupsStore.getFormattedName(group.id)" />
+                    <img class :src="group?.avatarUrl" :alt="groupsStore.getFormattedName(group?.id)"
+                        :title="groupsStore.getFormattedName(group?.id)" />
                 </div>
 
                 <HeadlinedDiv class="about" :text="t('views.GroupView.about')">
                     <div>
                         {{ t("views.GroupView.status") }}:
-                        <SearchLink :to="{ name: LIST_TYPE_GROUPS, query: { status: group.status ?? 0 } }"
-                            :title="t(`dictionaries.group.statuses.${group.status ?? 0}`)" />
+                        <SearchLink :to="{ name: LIST_TYPE_GROUPS, query: { status: group?.status ?? 0 } }"
+                            :title="t(`dictionaries.group.statuses.${group?.status ?? 0}`)" />
                     </div>
                 </HeadlinedDiv>
 
                 <TileSetWithHeadline class="parent-groups" v-if="displayedParentGroups.length > 0"
                     :type="PAGE_TYPE_GROUP" :headlineText="t('views.GroupView.parentGroups')"
-                    :headlineTo="parentGroups.length > maxParentGroupsCount ? { name: LIST_TYPE_GROUPS, query: { child: group.id } } : null"
+                    :headlineTo="parentGroups.length > maxParentGroupsCount ? { name: LIST_TYPE_GROUPS, query: { child: group?.id } } : null"
                     :store="groupsStore" :tilesetTo="PAGE_TYPE_GROUP" :items="displayedParentGroups" />
 
             </div>
@@ -36,30 +35,31 @@
             <div class="mid-grid">
 
                 <HeadlinedDiv class="description" :text="t('views.GroupView.description')">{{
-                    groupsStore.getDescription(group.id).text
+                    groupsStore.getDescription(group?.id).text
                 }}</HeadlinedDiv>
 
                 <TileSetWithHeadline class="vtubers" v-if="displayedVtubers.length > 0" :type="PAGE_TYPE_VTUBER"
                     :headlineText="t('views.GroupView.vtubers')"
-                    :headlineTo="childVtubers.length > maxVtubersCount ? { name: LIST_TYPE_VTUBERS, query: { group: group.id } } : null"
+                    :headlineTo="childVtubers.length > maxVtubersCount ? { name: LIST_TYPE_VTUBERS, query: { group: group?.id } } : null"
                     :store="vtubersStore" :tilesetTo="PAGE_TYPE_VTUBER" :items="displayedVtubers" />
 
                 <TileSetWithHeadline class="child-groups" v-if="displayedChildGroups.length > 0" :type="PAGE_TYPE_GROUP"
                     :headlineText="t('views.GroupView.childGroups')"
-                    :headlineTo="childGroups.length > maxChildGroupsCount ? { name: LIST_TYPE_GROUPS, query: { parent: group.id } } : null"
+                    :headlineTo="childGroups.length > maxChildGroupsCount ? { name: LIST_TYPE_GROUPS, query: { parent: group?.id } } : null"
                     :store="groupsStore" :tilesetTo="PAGE_TYPE_GROUP" :items="displayedChildGroups" />
             </div>
 
             <div class="right-grid">
                 <HeadlinedDiv class="links" :text="t('views.GroupView.links')">
-                    <ExternalLink v-for="l in group.links" :key="l.url" :url="l.url" :title="l.name" />
+                    <ExternalLink v-for="l in group?.links" :key="l.url" :url="l.url" :title="l.name" />
                 </HeadlinedDiv>
 
                 <HeadlinedDiv class="tags" :text="t('views.GroupView.tags')">
                     <span v-for="tag in tags" :key="tag">{{ tag }},</span>
                 </HeadlinedDiv>
             </div>
-        </main>  </div>
+        </main>
+    </div>
 </template>
 
 <script setup>
@@ -113,15 +113,15 @@ onBeforeMount(() => {
 const group = computed(() => groupsStore.getById(route.params.id));
 
 const maxParentGroupsCount = 2;
-const parentGroups = computed(() => groupsStore.getParentGroups(group.value.id));
+const parentGroups = computed(() => groupsStore.getParentGroups(group.value?.id));
 const displayedParentGroups = computed(() => parentGroups.value.slice(0, maxParentGroupsCount));
 
 const maxChildGroupsCount = 2;
-const childGroups = computed(() => groupsStore.getChildGroups(group.value.id));
+const childGroups = computed(() => groupsStore.getChildGroups(group.value?.id));
 const displayedChildGroups = computed(() => childGroups.value.slice(0, maxChildGroupsCount));
 
 const maxVtubersCount = 6;
-const childVtubers = computed(() => groupsStore.getVtubers(group.value.id));
+const childVtubers = computed(() => groupsStore.getVtubers(group.value?.id));
 const displayedVtubers = computed(() => childVtubers.value.slice(0, maxVtubersCount));
 
 const tags = [];

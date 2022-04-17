@@ -2,12 +2,17 @@
     <div class="hoverbox" v-if="visible && $slots.default">
         <div class="hoverbox-close" @click="close"></div>
         <div>
-            <slot></slot>
-        </div>  </div>
+            <slot />
+        </div>
+        <Loading v-if="busy" />
+    </div>
 </template>
 
 <script setup>
 import { ref } from "@vue/reactivity";
+import Loading from "./Loading.vue";
+
+const props = defineProps({ 'busy': { default: false, type: Boolean } });
 
 const visible = ref(false);
 const showFired = ref(false);
@@ -34,12 +39,13 @@ defineExpose({ show, hide })
 
 <style>
 .hoverbox {
-    min-width: 300px;
+    width: 400px;
     position: absolute;
     top: 0px;
     left: calc(100% + 5px);
     padding: 5px 5px 5px 5px;
     border: 1px solid var(--color-background-soft);
+    background-color: var(--color-background);
 }
 
 .hoverbox-close {
@@ -52,7 +58,7 @@ defineExpose({ show, hide })
     text-align: center;
     top: 4px;
     width: 15px;
-    z-index: 2;
+    z-index: 3;
 }
 
 .hoverbox-close:hover {
