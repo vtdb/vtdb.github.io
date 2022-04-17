@@ -1,0 +1,1 @@
+import{u as a,o as l,c as n,a as e,t as s,b as o}from"./index.ea67d66d.js";const u=e("br",null,null,-1),_={setup(r){const{t}=a({useScope:"global"});return(c,i)=>(l(),n("div",null,[e("h1",null,s(o(t)("views.AboutView.header")),1),u,e("p",null,s(o(t)("views.AboutView.text")),1)]))}};export{_ as default};
