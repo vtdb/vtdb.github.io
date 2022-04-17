@@ -1,6 +1,6 @@
 <template>
   <div @mouseover="tooltip?.show()" @mouseleave="tooltip?.hide()" class="tile-container">
-    <router-link :to="linkTo" :title="names?.join(' / ')">
+    <router-link :to="linkTo">
       <img class="picture" v-if="imgSrc" :src="imgSrc" :alt="names?.join(' / ') ?? 'picture'" />
       <p class="title">
         <NameHeadline :names="names" />
@@ -8,7 +8,8 @@
     </router-link>
     <Tooltip ref="tooltip" v-if="$slots.default">
       <slot></slot>
-    </Tooltip>  </div>
+    </Tooltip>
+  </div>
 </template>
 
 <script setup>
