@@ -1,8 +1,7 @@
 <template>
     <div>
         <h1>{{ t('views.GroupsListView.header') }}</h1>
-        <TileSet :items="displayedGroups" :store="groupsStore" :linkName="PAGE_TYPE_GROUP" />
-    </div>
+        <TileSet :type="PAGE_TYPE_GROUP" :items="displayedGroups" :store="groupsStore" :linkName="PAGE_TYPE_GROUP" />  </div>
 </template>
 
 <script setup>

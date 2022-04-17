@@ -17,31 +17,10 @@
             </div>
 
             <HeadlinedDiv class="about" :text="t('views.VtuberView.about')">
-                <div>
-                    {{ t("views.VtuberView.languages") }}:
-                    <SearchLink v-for="l in languages" :key="l.lang"
-                        :to="{ name: LIST_TYPE_VTUBERS, query: { lang: l.lang } }"
-                        :title="languageStore.getName(l.lang)" />
-                </div>
-                <div>
-                    {{ t("views.VtuberView.sex") }}:
-                    <SearchLink :to="{ name: LIST_TYPE_VTUBERS, query: { sex: vtuber.sex } }"
-                        :title="t(`dictionaries.vtuber.sexes.${vtuber.sex ?? 0}`)" />
-                </div>
-                <div>
-                    {{ t("views.VtuberView.species") }}:
-                    <SearchLink v-for="s in species" :key="s.id"
-                        :to="{ name: LIST_TYPE_VTUBERS, query: { spec: s.id } }"
-                        :title="speciesStore.getName(s.id).text" />
-                </div>
-                <div>
-                    {{ t("views.VtuberView.status") }}:
-                    <SearchLink :to="{ name: LIST_TYPE_VTUBERS, query: { status: vtuber.status ?? 0 } }"
-                        :title="t(`dictionaries.vtuber.statuses.${vtuber.status ?? 0}`)" />
-                </div>
+                <VtuberAbout :id="vtuber.id" />
             </HeadlinedDiv>
 
-            <TileSetWithHeadline class="groups" :headlineText="t('views.VtuberView.groups')"
+            <TileSetWithHeadline class="groups" :headlineText="t('views.VtuberView.groups')" :type="PAGE_TYPE_GROUP"
                 :headlineTo="displayedGroups.length > maxGroupCount ? { name: LIST_TYPE_GROUPS, query: { vtuber: vtuber.id } } : null"
                 :store="groupsStore" :tilesetTo="PAGE_TYPE_GROUP" :items="displayedGroups" />
 
@@ -71,13 +50,14 @@ import { useVtuberSpeciesRelationsStore } from '@/stores/vtuber-species-relation
 import { useVtuberGroupRelationsStore } from '@/stores/vtuber-group-relations'
 import { LIST_TYPE_VTUBERS, LIST_TYPE_GROUPS } from '@/utils/consts/listTypes';
 import { PAGE_TYPE_GROUP } from '@/utils/consts/pageTypes'
+import { onBeforeMount } from '@vue/runtime-core'
 import ExternalLink from '@/components/ExternalLink.vue'
 import SearchLink from '@/components/SearchLink.vue'
 import NameHeadline from '@/components/NameHeadline.vue'
 import TileSetWithHeadline from '@/components/TileSetWithHeadline.vue'
 import HeadlinedDiv from '@/components/HeadlinedDiv.vue'
 import Tile from '@/components/Tile.vue'
-import { onBeforeMount } from '@vue/runtime-core'
+import VtuberAbout from '@/components/VtuberAbout.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 

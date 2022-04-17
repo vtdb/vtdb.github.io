@@ -27,7 +27,7 @@
                 </HeadlinedDiv>
 
                 <TileSetWithHeadline class="parent-groups" v-if="displayedParentGroups.length > 0"
-                    :headlineText="t('views.GroupView.parentGroups')"
+                    :type="PAGE_TYPE_GROUP" :headlineText="t('views.GroupView.parentGroups')"
                     :headlineTo="parentGroups.length > maxParentGroupsCount ? { name: LIST_TYPE_GROUPS, query: { child: group.id } } : null"
                     :store="groupsStore" :tilesetTo="PAGE_TYPE_GROUP" :items="displayedParentGroups" />
 
@@ -39,12 +39,12 @@
                     groupsStore.getDescription(group.id).text
                 }}</HeadlinedDiv>
 
-                <TileSetWithHeadline class="vtubers" v-if="displayedVtubers.length > 0"
+                <TileSetWithHeadline class="vtubers" v-if="displayedVtubers.length > 0" :type="PAGE_TYPE_VTUBER"
                     :headlineText="t('views.GroupView.vtubers')"
                     :headlineTo="childVtubers.length > maxVtubersCount ? { name: LIST_TYPE_VTUBERS, query: { group: group.id } } : null"
                     :store="vtubersStore" :tilesetTo="PAGE_TYPE_VTUBER" :items="displayedVtubers" />
 
-                <TileSetWithHeadline class="child-groups" v-if="displayedChildGroups.length > 0"
+                <TileSetWithHeadline class="child-groups" v-if="displayedChildGroups.length > 0" :type="PAGE_TYPE_GROUP"
                     :headlineText="t('views.GroupView.childGroups')"
                     :headlineTo="childGroups.length > maxChildGroupsCount ? { name: LIST_TYPE_GROUPS, query: { parent: group.id } } : null"
                     :store="groupsStore" :tilesetTo="PAGE_TYPE_GROUP" :items="displayedChildGroups" />

@@ -5,10 +5,10 @@
 
     <div class="the-grid">
       <div class="main-grid">
-        <TileSetWithHeadline class="vtubers" :headlineText="t('views.MainView.vtubers')"
+        <TileSetWithHeadline class="vtubers" :headlineText="t('views.MainView.vtubers')" :type="PAGE_TYPE_VTUBER"
           :headlineTo="{ name: LIST_TYPE_VTUBERS }" :store="vtubersStore" :tilesetTo="PAGE_TYPE_VTUBER"
           :items="displayedVtubers" />
-        <TileSetWithHeadline class="groups" :headlineText="t('views.MainView.groups')"
+        <TileSetWithHeadline class="groups" :headlineText="t('views.MainView.groups')" :type="PAGE_TYPE_GROUP"
           :headlineTo="{ name: LIST_TYPE_GROUPS }" :store="groupsStore" :tilesetTo="PAGE_TYPE_GROUP"
           :items="displayedGroups" />
       </div>
