@@ -1,8 +1,8 @@
 <template>
     <div>
         <h1>{{ t('views.VtubersListView.header') }}</h1>
-        <TileSet :items="displayedVtubers" :store="vtubersStore" :linkName="PAGE_TYPE_VTUBER" />
-    </div>
+        <TileSet :type="PAGE_TYPE_VTUBER" :items="displayedVtubers" :store="vtubersStore"
+            :linkName="PAGE_TYPE_VTUBER" />  </div>
 </template>
 
 <script setup>
