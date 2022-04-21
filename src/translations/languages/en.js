@@ -30,8 +30,8 @@ export const en = {
             header: '@.capitalize:common.group Page',
             tofulllistlink: 'All Groups',
             description: '@.capitalize:common.description',
-            about:'@.capitalize:common.information',
-            status: '@.capitalize:common.status',
+            about: '@.capitalize:common.information',
+
             groups: '@.capitalize:common.groups',
             vtubers: '@.capitalize:common.vtubers',
             links: '@.capitalize:common.links',
@@ -43,12 +43,16 @@ export const en = {
         },
     },
     components: {
+        GroupAbout: {
+            status: '@.capitalize:common.status',
+            type: 'Type',
+        },
         TopMenu: {
             main: '@:common.sitename',
             vtubers: '@.capitalize:common.vtubers',
             groups: '@.capitalize:common.groups',
             about: 'About',
-        }
+        },
     },
     dictionaries: {
         vtuber: {
@@ -112,6 +116,6 @@ export const en = {
         group: 'group',
         groups: 'groups',
         links: 'links',
-        information:'information',
+        information: 'information',
     },
 };

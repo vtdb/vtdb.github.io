@@ -18,11 +18,7 @@
                 </div>
 
                 <HeadlinedDiv class="about" :text="t('views.GroupView.about')">
-                    <div>
-                        {{ t("views.GroupView.status") }}:
-                        <SearchLink :to="{ name: LIST_TYPE_GROUPS, query: { status: group?.status ?? 0 } }"
-                            :title="t(`dictionaries.group.statuses.${group?.status ?? 0}`)" />
-                    </div>
+                    <GroupAbout :id="group?.id"/>
                 </HeadlinedDiv>
 
                 <TileSetWithHeadline class="parent-groups" v-if="displayedParentGroups.length > 0"
@@ -76,6 +72,7 @@ import HeadlinedDiv from '@/components/HeadlinedDiv.vue';
 import TileSetWithHeadline from '@/components/TileSetWithHeadline.vue'
 import SearchLink from '@/components/SearchLink.vue';
 import ExternalLink from '@/components/ExternalLink.vue';
+import GroupAbout from '../components/GroupAbout.vue';
 
 const { t } = useI18n({ useScope: 'global' })
 

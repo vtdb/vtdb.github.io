@@ -7,7 +7,7 @@
       </p>
     </router-link>
     <Tooltip ref="tooltip" v-if="$slots.default">
-      <slot></slot>
+      <slot />
     </Tooltip>
   </div>
 </template>

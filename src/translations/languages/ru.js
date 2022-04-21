@@ -43,12 +43,16 @@ export const ru = {
         },
     },
     components: {
+        GroupAbout: {
+            status: '@.capitalize:common.status',
+            type: 'Тип',
+        },
         TopMenu: {
             main: '@:common.sitename',
             vtubers: '@.capitalize:common.vtubers',
             groups: '@.capitalize:common.groups',
             about: 'О сайте',
-        }
+        },
     },
     dictionaries: {
         vtuber: {
