@@ -43,6 +43,9 @@ export const ru = {
         },
     },
     components: {
+        PageNotFound: {
+            notFound: 'Страница не найдена',
+        },
         GroupAbout: {
             status: '@.capitalize:common.status',
             type: 'Тип',
@@ -86,12 +89,14 @@ export const ru = {
             },
         },
         language: {
+            levelLabel: 'Уровень',
             level: {
                 0: 'родной/свободный',
                 1: 'продвинутый',
                 2: 'средний',
                 3: 'базовый',
             },
+            usageLabel: 'Частота',
             usage: {
                 0: 'основной',
                 1: 'частый',

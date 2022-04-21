@@ -2,8 +2,7 @@
     <div>
         <div>
             {{ t("views.VtuberView.languages") }}:
-            <SearchLink v-for="l in languages" :key="l.lang" :to="{ name: LIST_TYPE_VTUBERS, query: { lang: l.lang } }"
-                :title="languageStore.getName(l.lang)" />
+            <LanguageKnowledgeLabel v-for="l in languages" :key="l.lang" :langKnowledge="l" />
         </div>
         <div>
             {{ t("views.VtuberView.sex") }}:
@@ -19,7 +18,8 @@
             {{ t("views.VtuberView.status") }}:
             <SearchLink :to="{ name: LIST_TYPE_VTUBERS, query: { status: vtuber.status ?? 0 } }"
                 :title="t(`dictionaries.vtuber.statuses.${vtuber.status ?? 0}`)" />
-        </div>  </div>
+        </div>
+    </div>
 </template>
 
 <script setup>
@@ -33,6 +33,7 @@ import { computed, onBeforeMount } from '@vue/runtime-core';
 import { LIST_TYPE_VTUBERS, LIST_TYPE_GROUPS } from '@/utils/consts/listTypes';
 import { PAGE_TYPE_GROUP } from '@/utils/consts/pageTypes'
 import SearchLink from '@/components/SearchLink.vue'
+import LanguageKnowledgeLabel from './LanguageKnowledgeLabel.vue';
 
 const { t } = useI18n({ useScope: 'global' })
 

@@ -43,6 +43,9 @@ export const en = {
         },
     },
     components: {
+        PageNotFound: {
+            notFound: 'Page Not Found',
+        },
         GroupAbout: {
             status: '@.capitalize:common.status',
             type: 'Type',
@@ -86,12 +89,14 @@ export const en = {
             },
         },
         language: {
+            levelLabel: 'Level',
             level: {
                 0: 'native/fluent',
                 1: 'advanced',
                 2: 'intermediate',
                 3: 'basic',
             },
+            usageLabel: 'Usage',
             usage: {
                 0: 'main',
                 1: 'common',

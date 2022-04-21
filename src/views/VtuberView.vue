@@ -1,5 +1,8 @@
 <template>
     <div v-if="vtubersStore.listLoading">Loading</div>
+    <div v-else-if="!vtuber">
+        <PageNotFound />
+    </div>
     <div v-else>
         <header>
             <h1>
@@ -25,7 +28,7 @@
                 :store="groupsStore" :tilesetTo="PAGE_TYPE_GROUP" :items="displayedGroups" />
 
             <HeadlinedDiv class="description" :text="t('views.VtuberView.description')">{{
-                vtubersStore.getDescription(vtuber.id).text
+                    vtubersStore.getDescription(vtuber.id).text
             }}</HeadlinedDiv>
 
             <HeadlinedDiv class="links" :text="t('views.VtuberView.links')">
@@ -35,7 +38,8 @@
             <HeadlinedDiv class="tags" :text="t('views.VtuberView.tags')">
                 <span v-for="tag in tags" :key="tag">{{ tag }},</span>
             </HeadlinedDiv>
-        </main>  </div>
+        </main>
+    </div>
 </template>
 
 <script setup>
@@ -58,6 +62,7 @@ import TileSetWithHeadline from '@/components/TileSetWithHeadline.vue'
 import HeadlinedDiv from '@/components/HeadlinedDiv.vue'
 import Tile from '@/components/Tile.vue'
 import VtuberAbout from '@/components/VtuberAbout.vue'
+import PageNotFound from '@/components/PageNotFound.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 
