@@ -1,6 +1,8 @@
 <template>
     <div class="search-link-container">
-        <router-link class="search-link-text" :to="to">{{ title }}</router-link>
+        <router-link class="search-link-text" :to="to">
+            <slot>{{ title }}</slot>
+        </router-link>
     </div>
 </template>
 
@@ -9,14 +11,15 @@ const props = defineProps(['title', 'to']);
 </script>
 
 <style>
-.search-link-container{
+.search-link-container {
     display: inline-block;
 }
 
-.search-link-container::after{
+.search-link-container::after {
     content: ',\00A0';
 }
-.search-link-container:last-child::after{
+
+.search-link-container:last-child::after {
     content: '';
 }
 </style>

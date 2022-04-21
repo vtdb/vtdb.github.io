@@ -1,5 +1,9 @@
 <template>
-    <div>
+    <div v-if="groupsStore.listLoading">Loading</div>
+    <div v-else-if="!group">
+        <PageNotFound />
+    </div>
+    <div v-else>
         <header>
             <h1>
                 <NameHeadline :names="groupsStore.getNamesByFormat(group?.id)" />
@@ -18,11 +22,7 @@
                 </div>
 
                 <HeadlinedDiv class="about" :text="t('views.GroupView.about')">
-                    <div>
-                        {{ t("views.GroupView.status") }}:
-                        <SearchLink :to="{ name: LIST_TYPE_GROUPS, query: { status: group?.status ?? 0 } }"
-                            :title="t(`dictionaries.group.statuses.${group?.status ?? 0}`)" />
-                    </div>
+                    <GroupAbout :id="group?.id" />
                 </HeadlinedDiv>
 
                 <TileSetWithHeadline class="parent-groups" v-if="displayedParentGroups.length > 0"
@@ -35,7 +35,7 @@
             <div class="mid-grid">
 
                 <HeadlinedDiv class="description" :text="t('views.GroupView.description')">{{
-                    groupsStore.getDescription(group?.id).text
+                        groupsStore.getDescription(group?.id).text
                 }}</HeadlinedDiv>
 
                 <TileSetWithHeadline class="vtubers" v-if="displayedVtubers.length > 0" :type="PAGE_TYPE_VTUBER"
@@ -76,6 +76,8 @@ import HeadlinedDiv from '@/components/HeadlinedDiv.vue';
 import TileSetWithHeadline from '@/components/TileSetWithHeadline.vue'
 import SearchLink from '@/components/SearchLink.vue';
 import ExternalLink from '@/components/ExternalLink.vue';
+import GroupAbout from '../components/GroupAbout.vue';
+import PageNotFound from '../components/PageNotFound.vue';
 
 const { t } = useI18n({ useScope: 'global' })
 

@@ -43,12 +43,19 @@ export const ru = {
         },
     },
     components: {
+        PageNotFound: {
+            notFound: 'Страница не найдена',
+        },
+        GroupAbout: {
+            status: '@.capitalize:common.status',
+            type: 'Тип',
+        },
         TopMenu: {
             main: '@:common.sitename',
             vtubers: '@.capitalize:common.vtubers',
             groups: '@.capitalize:common.groups',
             about: 'О сайте',
-        }
+        },
     },
     dictionaries: {
         vtuber: {
@@ -82,12 +89,14 @@ export const ru = {
             },
         },
         language: {
+            levelLabel: 'Уровень',
             level: {
                 0: 'родной/свободный',
                 1: 'продвинутый',
                 2: 'средний',
                 3: 'базовый',
             },
+            usageLabel: 'Частота',
             usage: {
                 0: 'основной',
                 1: 'частый',

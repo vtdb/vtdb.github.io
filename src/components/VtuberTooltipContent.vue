@@ -1,13 +1,13 @@
 <template>
     <div class="vtuber-tooltip">
         <div class="info">
-            <div>
+            <div class="vtuber-tooltip-name">
                 <router-link :to="{ name: PAGE_TYPE_VTUBER, params: { id } }">
                     <NameHeadline :names="vtubersStore.getNamesByFormat(id)" />
                 </router-link>
             </div>
-            <VtuberAbout :id="id" />
-            <div>
+            <VtuberAbout :id="id" class="vtuber-tooltip-about" />
+            <div class="vtuber-tooltip-description">
                 {{ vtubersStore.getDescription(id).text }}
             </div>
         </div>
@@ -63,6 +63,7 @@ const displayedGroups = computed(() => vtubersStore.getGroups(props.id).slice(0,
 <style scoped>
 .vtuber-tooltip {
     display: grid;
+    width: 400px;
     gap: 10px;
     grid-template-columns: 5fr 1fr;
 }
@@ -74,5 +75,11 @@ const displayedGroups = computed(() => vtubersStore.getGroups(props.id).slice(0,
 .groups {
     grid-column: 2;
     text-align: center;
+}
+
+.vtuber-tooltip-name,
+.vtuber-tooltip-about,
+.vtuber-tooltip-description {
+    margin-bottom: 5px;
 }
 </style>
